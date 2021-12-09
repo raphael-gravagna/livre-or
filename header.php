@@ -33,7 +33,12 @@ mysqli_set_charset($bdd, 'utf8');?>
         echo "<li><a href='inscription.php'>S'inscrire</a></li>";
         }
         ?>
-        <li><a href="profil.php">Profil</a></li>
+        <?php
+        if(isset($_SESSION['user'])) {
+        echo "<li><a href='profil.php'>Profil</a></li>";
+        }
+        ?>
+        
         <li><a href="livre-or.php">Livre d'or</a></li>
 
         <?php
