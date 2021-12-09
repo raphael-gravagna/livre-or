@@ -24,7 +24,7 @@ echo "<h3><a href='commentaire.php'>===>Contribuer au livre d'or</a></h3>";
                 <tr><?php
                     foreach($com_tableau as $com_tableau_user){
                     echo '<tr><th>'.''.'</th>';
-                    echo '<td>'.$com_tableau_user['login'].'<br>'.$com_tableau_user['date'].'<br>'.$com_tableau_user['commentaire'].'</td>';
+                    echo '<td><b>'.$com_tableau_user['login'].'</b><br>'.$com_tableau_user['date'].'<br>'.$com_tableau_user['commentaire'].'</td>';
                     }?>
             </table>
 </body>

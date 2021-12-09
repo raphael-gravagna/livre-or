@@ -4,34 +4,36 @@ $errormess = '';
 
 
 if(isset($_SESSION['user'])) {
-if(isset($_POST['envoyer'])) {
-    $user = $_SESSION['user'];
-    //var_dump($user);
-    $user_login = $user[0]['1'];
-    $user_id = $user[0]['0'];
-    //var_dump($user_id);
-    $date = date('Y-m-d H:i:s');
-    //var_dump($date);
-    $commentaire = $_POST['commentaire'];
-    //var_dump($commentaire);
-    //var_dump($bdd);
-    //var_dump($date);
-    $reqinsert = mysqli_query($bdd, "INSERT INTO commentaires (id, commentaire, id_utilisateur, date) VALUES (NULL, '$commentaire', '$user_id', '$date');");
-    echo "insertion réussie";
-}
+    //var_dump($_SESSION['user']);
     $user = $_SESSION['user'];
     $user_login = $user[0]['1'];
     $user_id = $user[0]['0'];
     $date = date('Y-m-d H:i:s');
+
 $Requete = mysqli_query($bdd, "SELECT * FROM commentaires WHERE id_utilisateur = '$user_id'");
 $nouveau_com = mysqli_fetch_all($Requete);
+//var_dump($nouveau_com);
 
-    if($nouveau_com == true && ) {
+if(isset($_POST['envoyer'])) {
+
+    if(empty($nouveau_com)) {
         $commentaire = $_POST['commentaire'];
+    
         $reqinsert = mysqli_query($bdd, "INSERT INTO commentaires (id, commentaire, id_utilisateur, date) VALUES (NULL, '$commentaire', '$user_id', '$date');");
+        //echo "insertion réussie de votre premier commentaire";
+        header('location:livre-or.php');
+    }
+    else {
+        $commentaire = $_POST['commentaire'];
+    
+        $reqinsert = mysqli_query($bdd, "INSERT INTO commentaires (id, commentaire, id_utilisateur, date) VALUES (NULL, '$commentaire', '$user_id', '$date');");
+        header('location:livre-or.php');
+
+
     }
 }
-
+}
+//essayons un elseif
 
 ?>
 
