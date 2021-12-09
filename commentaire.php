@@ -2,23 +2,37 @@
 require 'header.php';
 $errormess = '';
 
+
 if(isset($_SESSION['user'])) {
 if(isset($_POST['envoyer'])) {
     $user = $_SESSION['user'];
     //var_dump($user);
     $user_login = $user[0]['1'];
     $user_id = $user[0]['0'];
-    var_dump($user_id);
+    //var_dump($user_id);
     $date = date('Y-m-d H:i:s');
     //var_dump($date);
     $commentaire = $_POST['commentaire'];
     //var_dump($commentaire);
     //var_dump($bdd);
-    var_dump($date);
+    //var_dump($date);
     $reqinsert = mysqli_query($bdd, "INSERT INTO commentaires (id, commentaire, id_utilisateur, date) VALUES (NULL, '$commentaire', '$user_id', '$date');");
     echo "insertion réussie";
 }
+    $user = $_SESSION['user'];
+    $user_login = $user[0]['1'];
+    $user_id = $user[0]['0'];
+    $date = date('Y-m-d H:i:s');
+$Requete = mysqli_query($bdd, "SELECT * FROM commentaires WHERE id_utilisateur = '$user_id'");
+$nouveau_com = mysqli_fetch_all($Requete);
+
+    if($nouveau_com == true && ) {
+        $commentaire = $_POST['commentaire'];
+        $reqinsert = mysqli_query($bdd, "INSERT INTO commentaires (id, commentaire, id_utilisateur, date) VALUES (NULL, '$commentaire', '$user_id', '$date');");
+    }
 }
+
+
 ?>
 
 <body>
